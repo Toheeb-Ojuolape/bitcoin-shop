@@ -1,11 +1,17 @@
-:root {
-    --blue: #1e90ff;
-    --white: #ffffff;
-  }
 
 .primarybutton{
     background:var(--blue);
     color:white;
+    padding:15px 0px;
+    text-align:center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.outlinedbutton{
+    border:1px solid var(--blue);
+    color:var(--blue);
     padding:15px 0px;
     text-align:center;
     border-radius: 10px;

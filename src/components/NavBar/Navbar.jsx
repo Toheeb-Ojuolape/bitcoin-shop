@@ -1,14 +1,14 @@
-import React from 'react'
-import cart from "../../assets/icons/cart.svg"
-import "./Navbar.css"
+import React from "react";
+import "./Navbar.css";
+import Cart from "../Elements/Cart/Cart";
 
-function Navbar() {
+function Navbar({ showCheckout,products }) {
   return (
-    <div class="navbar">
-        <h2>My Bitcoin Shop</h2>
-        <img src={cart}/>
+    <div className="navbar">
+      <h2>My Bitcoin Shop</h2>
+      <Cart products={products} showCheckout={showCheckout} />
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

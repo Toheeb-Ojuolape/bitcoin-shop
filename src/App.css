@@ -2,3 +2,11 @@
     --blue: #1e90ff;
     --white: #ffffff;
   }
+
+.flex{
+  display:flex
+}
+
+.justify-between{
+  justify-content: space-between;
+}

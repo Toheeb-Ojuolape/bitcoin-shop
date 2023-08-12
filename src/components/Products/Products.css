@@ -1,8 +1,8 @@
 .product{
     padding:10px 10px 19px 10px;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
     margin:10px;
-    border-radius:8px
+    border-radius:8px;
+    border:0.005em solid #e4e4e4
 }
 
 .product-title{
