@@ -1,0 +1,19 @@
+.relative{
+    position:relative;
+    cursor: pointer;
+}
+
+.cart-count{
+    background:#eb3f3f;
+    color:white;
+    padding:3px;
+    font-size:9px;
+    border-radius:30px;
+    position: absolute;
+    right:0;
+    top:0;
+    margin-bottom:-10px;
+    min-width:10px;
+    text-align:center;
+    cursor: pointer;
+}

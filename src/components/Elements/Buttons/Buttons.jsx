@@ -1,7 +1,7 @@
 import React from "react";
 import "./Button.css";
 
-function PrimaryButton({ children, onClick }) {
+export const PrimaryButton = ({ children, onClick }) => {
   return (
     <div onClick={onClick} className="primarybutton">
       {children}
@@ -9,4 +9,11 @@ function PrimaryButton({ children, onClick }) {
   );
 }
 
-export default PrimaryButton;
+
+export const OutlinedButton = ({ children, onClick })  => {
+  return (
+    <div onClick={onClick} className="outlinedbutton">
+      {children}
+    </div>
+  );
+}

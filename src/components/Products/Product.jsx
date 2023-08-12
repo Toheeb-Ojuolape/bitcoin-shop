@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryButton from "../Elements/Buttons/Buttons";
+import { PrimaryButton } from "../Elements/Buttons/Buttons";
 import "./Products.css"
 import { standardAmountFormat } from "../../utils/amountFormatter";
 

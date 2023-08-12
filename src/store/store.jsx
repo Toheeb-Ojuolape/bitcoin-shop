@@ -2,8 +2,10 @@ import { create } from "zustand";
 
 const useProductStore = create((set) => ({
   products: [],
-  addProduct: () => set((state, e) => ({ products: [...state.products, e] })),
+  addProducts: (newProducts) =>
+    set((state) => ({ products: [...state.products, newProducts] })),
   removeAllProducts: () => set({ products: [] }),
+  removeItem: (products) => set({ products: products }),
 }));
 
 export default useProductStore;
