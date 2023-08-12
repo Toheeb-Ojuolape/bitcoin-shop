@@ -1,0 +1,25 @@
+.product{
+    padding:10px 10px 19px 10px;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+    margin:10px;
+    border-radius:8px
+}
+
+.product-title{
+    font-size:19px;
+    font-weight: 700;
+}
+
+.product-details{
+    display:flex;
+    justify-content: space-between;
+}
+
+
+
+@media only screen and (min-width:768px) {
+    .products{
+        display:flex;
+        overflow-x: auto;
+    }
+}

@@ -1,0 +1,22 @@
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+  }
+
+.primarybutton{
+    background:var(--blue);
+    color:white;
+    padding:15px 0px;
+    text-align:center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.primarybutton:hover{
+    background:var(--white);
+    color:var(--blue);
+    padding:15px 0px;
+    text-align:center;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
+}
