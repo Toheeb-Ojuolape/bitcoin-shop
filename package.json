@@ -13,7 +13,11 @@
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.15.0",
+    "socket.io-client": "^4.7.2",
+    "webln": "^0.3.2",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
@@ -24,6 +28,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "sass": "^1.65.1",
     "vite": "^4.4.5"
   }
 }

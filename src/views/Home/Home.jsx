@@ -8,7 +8,7 @@ import Checkout from "../../components/Checkout/Checkout";
 function Home() {
   const [products, setProducts] = useState([]);
   const [checkout, setShowCheckout] = useState(false);
-  const productsincart = useProductStore((state) => state.products);
+  const [productsincart, setProductsInCart] = useState(useProductStore.getState().products);
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
@@ -21,14 +21,18 @@ function Home() {
     fetchAllProducts();
   }, []);
 
+
   const handleAddProduct = (product) => {
+    console.log(product)
     useProductStore.getState().addProducts(product);
+    setProductsInCart(useProductStore.getState().products)
   };
 
   const removeItem = (index) => {
-    productsincart.splice(index, 1);
-    useProductStore.getState().removeItem(productsincart);
-    useProductStore.getState()
+    const updatedProducts = productsincart.slice(); // Create a copy of the array
+    updatedProducts.splice(index, 1); // Modify the copied array
+    useProductStore.getState().removeItem(updatedProducts); // Update the store state
+    setProductsInCart(updatedProducts); 
   };
   return (
     <div className="relative">

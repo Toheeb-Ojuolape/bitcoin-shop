@@ -1,0 +1,10 @@
+.invoice{
+    display:flex;
+    justify-content: center;
+    margin:15px 0px
+}
+
+.invoice-text{
+    text-align:center;
+    font-size:12px
+}
