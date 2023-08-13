@@ -1,3 +1,40 @@
+@media only screen and (max-width:600px){
+    .form-row{
+        display:block;
+        width:100%
+    }
+
+    .input{
+        padding:10px;
+        border-radius:5px;
+        outline:0;
+        border:1px solid #ebf0ef;
+        width:95%
+    }
+    
+    .input:focus{
+        border:1px solid var(--blue)
+    }
+}
+
+
+@media only screen and (min-width:600px){
+    .form-row{
+        display:flex;
+        width:100%
+    }
+
+    .input{
+        padding:10px;
+        border-radius:5px;
+        outline:0;
+        border:1px solid #ebf0ef;
+    }
+    
+    .input:focus{
+        border:1px solid var(--blue)
+    }
+}
 .invoiceContainer{
     padding:12px 8px;
     border:solid 1px #656565;
@@ -6,3 +43,25 @@
     display:flex;
     justify-content: center;
   }
+
+
+.form-row > *{
+    margin:0px 10px 10px 0px;
+    flex:1
+}
+
+.form-column{
+    flex:1/2
+}
+
+
+
+label{
+    font-size:14px
+}
+
+
+
+.details-form{
+    margin:9px 0px;
+}

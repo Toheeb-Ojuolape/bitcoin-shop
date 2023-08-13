@@ -9,7 +9,7 @@ function InvoiceInput({ invoice }) {
     toast.success("Invoice copied to clipboard");
   };
   return (
-    <div className="invoiceContainer">
+    <div onClick={copyInvoice} className="invoiceContainer">
       <span>{invoice && invoice.slice(0, 20)+"..."}</span>
       <img
         className="copyIcon"
