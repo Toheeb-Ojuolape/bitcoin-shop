@@ -19,7 +19,7 @@ function CheckoutItem({ product, index,removeItem }) {
         </div>
         <img
           onClick={() => removeItem(index)}
-          width={"20px"}
+          width={"21px"}
           src={closeicon}
           alt="closeicon"
         />

@@ -1,0 +1,8 @@
+.invoiceContainer{
+    padding:12px 8px;
+    border:solid 1px #656565;
+    border-radius:8px;
+    margin:10px 40px;
+    display:flex;
+    justify-content: center;
+  }

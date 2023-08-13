@@ -7,13 +7,18 @@ export const PrimaryButton = ({ children, onClick }) => {
       {children}
     </div>
   );
-}
+};
 
-
-export const OutlinedButton = ({ children, onClick })  => {
+export const OutlinedButton = ({ children, onClick, loading, width }) => {
   return (
-    <div onClick={onClick} className="outlinedbutton">
-      {children}
-    </div>
+    <button
+      disabled={loading}
+      style={{ width: width }}
+      onClick={onClick}
+      className="outlinedbutton"
+    >
+      {!loading && <span>{children}</span>}
+      {loading && <div className="spinner"></div>}
+    </button>
   );
-}
+};
