@@ -9,6 +9,7 @@ import ajax from "../../ajax/ajax";
 import Invoice from "../Invoice/invoice";
 import DetailsForm from "../Elements/Forms/DetailsForm";
 import SuccessComponent from "./SuccessComponent";
+import io from "socket.io-client";
 
 function Checkout({ products, closeCheckout, removeItem }) {
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,16 @@ function Checkout({ products, closeCheckout, removeItem }) {
   const [ispayment, setPayment] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState(false);
+  const socket = io(import.meta.env.VITE_API_URL);
+
+
+  useEffect(()=>{
+    socket.on("payment-verified", (data) => {
+      console.log(data)
+      console.log("Payment verified:");
+      setPaymentStatus(true);
+    });
+  },[])
 
   const generateInvoice = async (amount) => {
     try {
@@ -24,23 +35,9 @@ function Checkout({ products, closeCheckout, removeItem }) {
       setInvoice(response.invoice);
       setLoading(false);
       setPayment(true);
-      listenToInvoice(response.invoice);
     } catch (error) {
       setLoading(false);
       setPayment(false);
-    }
-  };
-
-  const listenToInvoice = (invoice) => {
-    const paymentInvoice = invoice
-    const id = setInterval(async () => {
-      console.log(paymentInvoice)
-      const status = await ajax.listenToInvoice(paymentInvoice);
-      setPaymentStatus(status);
-    }, 5000);
-
-    if (paymentStatus) {
-      clearInterval(id);
     }
   };
 
@@ -90,7 +87,7 @@ function Checkout({ products, closeCheckout, removeItem }) {
             </div>
           )}
 
-          {ispayment && invoice && (
+          {ispayment && !paymentStatus && invoice && (
             <Invoice goBack={goBack} invoice={invoice} />
           )}
 

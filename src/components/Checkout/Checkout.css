@@ -14,11 +14,11 @@
   }
 
   .checkout-item-title {
-    padding: 7px 0px 0px 9px;
+    padding: 8px 0px 0px 9px;
   }
 
   .checkout-product-price {
-    padding: 7px;
+    padding: 9px;
   }
 
   .total-checkout {
@@ -63,4 +63,5 @@
     display:flex;
     justify-content: center;
     text-align: center;
+    padding:20px
 }

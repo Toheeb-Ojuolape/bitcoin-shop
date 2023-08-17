@@ -6,9 +6,9 @@ function SuccessComponent() {
     <div className="success-icon">
       <div>
         <img width="200px" src={success} alt="" />
-        <h3>Payment made successfully</h3>
+        <h2>Payment made successfully</h2>
         <p>
-          Your payment has been confirmed successfully and your products are on
+          Your payment has been confirmed successfully  <br/>and your products are on
           the way
         </p>
       </div>

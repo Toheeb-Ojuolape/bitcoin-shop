@@ -2,6 +2,7 @@ import React from "react";
 import "./Forms.css";
 import copyicon from "../../../assets/icons/copyicon.svg";
 import { toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 function InvoiceInput({ invoice }) {
   const copyInvoice = () => {
@@ -10,6 +11,7 @@ function InvoiceInput({ invoice }) {
   };
   return (
     <div onClick={copyInvoice} className="invoiceContainer">
+      <Toaster />
       <span>{invoice && invoice.slice(0, 20)+"..."}</span>
       <img
         className="copyIcon"
