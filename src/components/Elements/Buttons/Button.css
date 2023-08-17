@@ -29,6 +29,8 @@
     width: 12px;
     height: 12px;
     animation: spin 1s linear infinite;
+    text-align:center;
+    margin: auto;
   }
   
   @keyframes spin {

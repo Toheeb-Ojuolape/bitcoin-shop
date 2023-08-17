@@ -15,6 +15,14 @@
     justify-content: space-between;
 }
 
+.product-category{
+    margin:10px 0px 29px 0px
+}
+
+.product-category h2{
+    padding:0px 0px 0px 10px;
+    margin:0px
+}
 
 
 @media only screen and (min-width:768px) {

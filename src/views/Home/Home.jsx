@@ -23,7 +23,6 @@ function Home() {
 
 
   const handleAddProduct = (product) => {
-    console.log(product)
     useProductStore.getState().addProducts(product);
     setProductsInCart(useProductStore.getState().products)
   };
