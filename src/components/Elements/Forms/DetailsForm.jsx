@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Input from "./Input";
 
-function DetailsForm({ setDisabled }) {
+function DetailsForm({ setDisabled,setBuyerInfo }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   useEffect(() => {
     if (name && email && address) {
       setDisabled(false);
+      setBuyerInfo({
+        name:name,
+        email:email,
+        address:address
+      })
     } else {
       setDisabled(true);
     }

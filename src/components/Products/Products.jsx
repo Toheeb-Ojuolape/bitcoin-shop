@@ -1,43 +1,28 @@
 import React from "react";
-import Product from "./Product";
+import ProductCategory from "./ProductCategory";
 
 function Products({ products, addProduct }) {
   return (
     <div>
-      <div className="product-category">
-        <h2>All Products</h2>
-        <div className="products">
-          {products &&
-            products.map((product, i) => (
-              <Product product={product} key={i} addProduct={addProduct} />
-            ))}
-        </div>
-      </div>
+      <ProductCategory
+        products={products}
+        title={"All Products"}
+        addProduct={addProduct}
+      />
 
       {/* Devices products */}
-      <div className="product-category">
-        <h2>Phones</h2>
-        <div className="products">
-          {products &&
-            products
-              .filter((product) => product.category === "device")
-              .map((product, i) => (
-                <Product product={product} key={i} addProduct={addProduct} />
-              ))}
-        </div>
-      </div>
+      <ProductCategory
+        products={products.filter((product)=>product.category==='device')}
+        title={"Devices"}
+        addProduct={addProduct}
+      />
 
-      <div className="product-category">
-        <h2>Accessories</h2>
-        <div className="products">
-          {products &&
-            products
-              .filter((product) => product.category === "accessories")
-              .map((product, i) => (
-                <Product product={product} key={i} addProduct={addProduct} />
-              ))}
-        </div>
-      </div>
+      <ProductCategory
+        products={products.filter((product)=>product.category==='accessories')}
+        title={"Accessories"}
+        addProduct={addProduct}
+      />
+
     </div>
   );
 }

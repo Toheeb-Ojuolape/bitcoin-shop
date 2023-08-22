@@ -9,7 +9,8 @@ export default {
     }
   },
 
-  async generateInvoice(amount) {
+  async generateInvoice(amount, buyer,products) {
+    let order = `"Purchase of ${products} by ${buyer.name}, Email: ${buyer.email}, Delivery address: ${buyer.address}"`;
     const requestOptions = {
       method: "POST",
       headers: {
@@ -17,6 +18,10 @@ export default {
       },
       body: JSON.stringify({
         amount: amount,
+        name: buyer.name,
+        email: buyer.email,
+        address: buyer.address,
+        order: order,
       }),
     };
     try {

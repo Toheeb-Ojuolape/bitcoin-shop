@@ -6,22 +6,23 @@ import { requestProvider } from "webln";
 import PaymentLoading from "./PaymentLoading";
 import backIcon from "../../assets/icons/back-icon.svg";
 
+
 function invoice({ invoice, goBack }) {
   const payInvoice = async () => {
     await requestProvider();
-    window.webln.sendPayment(invoice);
+    window.webln.sendPayment(invoice.paymentRequest);
   };
   return (
     <div>
       <img onClick={goBack} src={backIcon} width={"20px"}></img>
-      <div className="invoice">
+      <div  onClick={payInvoice} className="invoice">
         <div>
           <QRCode
             size={100}
             style={{ height: "auto", maxWidth: "150px", width: "150px" }}
             value={invoice.paymentRequest}
             viewBox={`0 0 256 256`}
-            onClick={payInvoice}
+           
           />
         </div>
       </div>
