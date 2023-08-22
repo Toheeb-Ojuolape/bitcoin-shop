@@ -5,6 +5,7 @@ import Navbar from "../../components/NavBar/Navbar";
 import useProductStore from "../../store/store";
 import Checkout from "../../components/Checkout/Checkout";
 import { toast } from "react-hot-toast";
+import Cart from "../../components/Elements/Cart/Cart";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -41,17 +42,29 @@ function Home() {
     useProductStore.getState().removeItem(updatedProducts); // Update the store state
     setProductsInCart(updatedProducts);
   };
+
+  const showCheckout = () => {
+    setShowCheckout(!checkout);
+    window.scroll(0, 0);
+  };
   return (
     <div className="relative">
-      <Navbar
-        products={productsincart}
-        showCheckout={() => setShowCheckout(!checkout)}
-      />
+      <Navbar products={productsincart} showCheckout={showCheckout} />
       <Products
         products={products}
         addProduct={handleAddProduct}
         loading={loading}
       />
+
+      <div
+        className={
+          productsincart.length >= 1
+            ? "bounce-animation floating-cart"
+            : "floating-cart"
+        }
+      >
+        <Cart products={productsincart} showCheckout={showCheckout} />
+      </div>
       {checkout && (
         <Checkout
           products={productsincart}

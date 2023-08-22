@@ -10,3 +10,28 @@
 .justify-between{
   justify-content: space-between;
 }
+
+.floating-cart{
+  position: fixed;
+  z-index:0;
+  right:0;
+  bottom:0;
+  padding:20px;
+  background:#ecfaff;
+  border-radius:50%;
+  margin:30px;
+}
+
+
+.bounce-animation{
+  animation: bounce 1s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
