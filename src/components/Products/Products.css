@@ -2,7 +2,8 @@
     padding:10px 16px 19px 16px;
     margin:10px;
     border-radius:8px;
-    border:0.005em solid #e4e4e4
+    border:0.005em solid #e4e4e4;
+    flex:1;
 }
 
 .product-title{
@@ -25,9 +26,18 @@
 }
 
 
+.product-image{
+    width:100%
+}
+
+
 @media only screen and (min-width:768px) {
     .products{
         display:flex;
         overflow-x: auto;
+    }
+
+    .product-image{
+        width:240px
     }
 }

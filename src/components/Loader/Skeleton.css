@@ -32,3 +32,8 @@
 .skeleton-title{
     margin:20px 0px 0px 0px
 }
+
+
+.skeleton-product{
+  flex:1
+}
