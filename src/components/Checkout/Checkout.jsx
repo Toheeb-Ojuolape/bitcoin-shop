@@ -10,6 +10,7 @@ import Invoice from "../Invoice/invoice";
 import DetailsForm from "../Elements/Forms/DetailsForm";
 import SuccessComponent from "./SuccessComponent";
 import io from "socket.io-client";
+import { productList } from "../../utils/productList";
 
 function Checkout({ products, closeCheckout, removeItem }) {
   const [loading, setLoading] = useState(false);
@@ -17,21 +18,19 @@ function Checkout({ products, closeCheckout, removeItem }) {
   const [ispayment, setPayment] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState(false);
+  const [buyer,setBuyer] = useState({})
   const socket = io(import.meta.env.VITE_API_URL);
 
-
-  useEffect(()=>{
-    socket.on("payment-verified", (data) => {
-      console.log(data)
-      console.log("Payment verified:");
+  useEffect(() => {
+    socket.on("payment-verified", () => {
       setPaymentStatus(true);
     });
-  },[])
+  }, []);
 
   const generateInvoice = async (amount) => {
     try {
       setLoading(true);
-      const response = await ajax.generateInvoice(amount);
+      const response = await ajax.generateInvoice(amount,buyer,productList(products));
       setInvoice(response.invoice);
       setLoading(false);
       setPayment(true);
@@ -40,6 +39,11 @@ function Checkout({ products, closeCheckout, removeItem }) {
       setPayment(false);
     }
   };
+
+  const setBuyerInfo = (payload) =>{
+    console.log(payload)
+    setBuyer(payload)
+  }
 
   const goBack = () => {
     setPayment(false);
@@ -74,7 +78,7 @@ function Checkout({ products, closeCheckout, removeItem }) {
 
           {!ispayment && (
             <div>
-              <DetailsForm setDisabled={setDisabled} />
+              <DetailsForm setDisabled={setDisabled} setBuyerInfo={setBuyerInfo} />
               {!disabled && (
                 <OutlinedButton
                   width={"100%"}

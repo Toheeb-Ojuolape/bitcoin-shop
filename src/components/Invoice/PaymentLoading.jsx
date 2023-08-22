@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function PaymentLoading(invoice) {
+function PaymentLoading() {
 
   return (
     <div className="pending-payment">

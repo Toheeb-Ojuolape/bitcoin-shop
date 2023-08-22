@@ -4,6 +4,7 @@ import ajax from "../../ajax/ajax";
 import Navbar from "../../components/NavBar/Navbar";
 import useProductStore from "../../store/store";
 import Checkout from "../../components/Checkout/Checkout";
+import { toast } from "react-hot-toast";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -23,8 +24,11 @@ function Home() {
 
 
   const handleAddProduct = (product) => {
+    const id = toast.loading("loading")
     useProductStore.getState().addProducts(product);
     setProductsInCart(useProductStore.getState().products)
+    toast.dismiss(id)
+    toast.success("Product added to cart")
   };
 
   const removeItem = (index) => {
@@ -35,6 +39,7 @@ function Home() {
   };
   return (
     <div className="relative">
+     
       <Navbar
         products={productsincart}
         showCheckout={() => setShowCheckout(!checkout)}
