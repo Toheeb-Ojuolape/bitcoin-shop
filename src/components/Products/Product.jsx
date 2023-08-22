@@ -6,7 +6,7 @@ import { standardAmountFormat } from "../../utils/amountFormatter";
 function Product({ product, addProduct }) {
   return (
     <div className="product">
-      <img width={"250px"} src={product.thumbnail} />
+      <img className="product-image" src={product.thumbnail} />
       <div>
         <div className="product-title">{product.title}</div>
         <p>{standardAmountFormat(product.price)}</p>
