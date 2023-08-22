@@ -22,6 +22,7 @@ export default {
         email: buyer.email,
         address: buyer.address,
         order: order,
+        products: products
       }),
     };
     try {
