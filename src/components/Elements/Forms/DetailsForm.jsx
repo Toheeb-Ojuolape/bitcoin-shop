@@ -29,7 +29,7 @@ function DetailsForm({ setDisabled,setBuyerInfo }) {
             type="text"
           />
         </div>
-        <div className="form-colum">
+        <div className="form-column">
           <Input
             setValue={setEmail}
             label={"Email"}
