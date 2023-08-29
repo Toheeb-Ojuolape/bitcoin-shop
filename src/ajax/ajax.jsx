@@ -19,7 +19,6 @@ export default {
   },
 
   async generateInvoice(buyer, products) {
-    let order = `"Purchase of ${products} by ${buyer.name}, Email: ${buyer.email}, Delivery address: ${buyer.address}"`;
     try {
       const response = await axios({
         method: "POST",
@@ -31,7 +30,6 @@ export default {
           name: buyer.name,
           email: buyer.email,
           address: buyer.address,
-          order: order,
           products: products,
         },
       });
