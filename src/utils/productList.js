@@ -1,9 +1,8 @@
 //takes in an array of products and returns the names of the products as a string
-
 export const productList = (products) =>{
-    let productNames = ""
+    let productIndex = []
     products.forEach((product)=>{
-        productNames += product.title+", "
+        productIndex.push(product.id)
     })
-    return productNames
+    return productIndex
 }

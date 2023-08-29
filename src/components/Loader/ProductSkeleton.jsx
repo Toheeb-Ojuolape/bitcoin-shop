@@ -9,7 +9,7 @@ function ProductSkeleton() {
         <div className="skeleton-title">
           <SkeletonLoader width={"90%"} height={"16px"} />
         </div>
-        <p><SkeletonLoader width={"90px"} height={"10px"} /></p>
+        <div><SkeletonLoader width={"90px"} height={"10px"} /></div>
       </div>
       <SkeletonLoader height={"40px"} width={"100%"} border={"10px"}/>
     </div>

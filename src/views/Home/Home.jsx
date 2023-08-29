@@ -6,6 +6,7 @@ import useProductStore from "../../store/store";
 import Checkout from "../../components/Checkout/Checkout";
 import { toast } from "react-hot-toast";
 import Cart from "../../components/Elements/Cart/Cart";
+import handleError from "../../utils/handleError";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ function Home() {
         setProducts(fetchProducts.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        handleError(error.response.data.error);
         setLoading(false);
       }
     };
@@ -37,10 +38,15 @@ function Home() {
   };
 
   const removeItem = (index) => {
-    const updatedProducts = productsincart.slice(); // Create a copy of the array
-    updatedProducts.splice(index, 1); // Modify the copied array
-    useProductStore.getState().removeItem(updatedProducts); // Update the store state
+    const updatedProducts = productsincart.slice();
+    updatedProducts.splice(index, 1);
+    useProductStore.getState().removeItem(updatedProducts);
     setProductsInCart(updatedProducts);
+  };
+
+  const removeAllProducts = () => {
+    useProductStore.getState().removeAllProducts();
+    setProductsInCart([]);
   };
 
   const showCheckout = () => {
@@ -70,6 +76,7 @@ function Home() {
           products={productsincart}
           closeCheckout={() => setShowCheckout(!checkout)}
           removeItem={removeItem}
+          removeAllProducts={removeAllProducts}
         />
       )}
     </div>
