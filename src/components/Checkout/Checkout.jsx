@@ -11,39 +11,50 @@ import DetailsForm from "../Elements/Forms/DetailsForm";
 import SuccessComponent from "./SuccessComponent";
 import io from "socket.io-client";
 import { productList } from "../../utils/productList";
+import { requestProvider } from "webln";
+import handleError from "../../utils/handleError";
 
-function Checkout({ products, closeCheckout, removeItem }) {
+function Checkout({ products, closeCheckout, removeItem, removeAllProducts }) {
   const [loading, setLoading] = useState(false);
   const [invoice, setInvoice] = useState("");
   const [ispayment, setPayment] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState(false);
-  const [buyer,setBuyer] = useState({})
+  const [buyer, setBuyer] = useState({});
   const socket = io(import.meta.env.VITE_API_URL);
 
   useEffect(() => {
     socket.on("payment-verified", () => {
       setPaymentStatus(true);
+      removeAllProducts();
     });
   }, []);
 
-  const generateInvoice = async (amount) => {
+  const generateInvoice = async () => {
     try {
       setLoading(true);
-      const response = await ajax.generateInvoice(amount,buyer,productList(products));
-      setInvoice(response.invoice);
-      setLoading(false);
-      setPayment(true);
+      const response = await ajax.generateInvoice(buyer, productList(products));
+      requestProvider()
+        .then(async (webln) => {
+          console.log(webln)
+          setLoading(false);
+          await webln.sendPayment(response.invoice.paymentRequest);
+        })
+        .catch(() => {
+          setLoading(false);
+          setInvoice(response.invoice);
+          setPayment(true);
+        });
     } catch (error) {
+      handleError(error.message);
       setLoading(false);
       setPayment(false);
     }
   };
 
-  const setBuyerInfo = (payload) =>{
-    console.log(payload)
-    setBuyer(payload)
-  }
+  const setBuyerInfo = (payload) => {
+    setBuyer(payload);
+  };
 
   const goBack = () => {
     setPayment(false);
@@ -78,12 +89,15 @@ function Checkout({ products, closeCheckout, removeItem }) {
 
           {!ispayment && (
             <div>
-              <DetailsForm setDisabled={setDisabled} setBuyerInfo={setBuyerInfo} />
+              <DetailsForm
+                setDisabled={setDisabled}
+                setBuyerInfo={setBuyerInfo}
+              />
               {!disabled && (
                 <OutlinedButton
                   width={"100%"}
                   loading={loading}
-                  onClick={() => generateInvoice(sumAmount(products))}
+                  onClick={() => generateInvoice()}
                 >
                   Pay Now
                 </OutlinedButton>
@@ -94,10 +108,10 @@ function Checkout({ products, closeCheckout, removeItem }) {
           {ispayment && !paymentStatus && invoice && (
             <Invoice goBack={goBack} invoice={invoice} />
           )}
-
-          {paymentStatus && <SuccessComponent />}
         </div>
       )}
+
+      {paymentStatus && <SuccessComponent />}
     </div>
   );
 }

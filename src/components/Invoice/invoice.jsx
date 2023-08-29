@@ -5,24 +5,27 @@ import InvoiceInput from "../Elements/Forms/InvoiceInput";
 import { requestProvider } from "webln";
 import PaymentLoading from "./PaymentLoading";
 import backIcon from "../../assets/icons/back-icon.svg";
-
+import handleError from "../../utils/handleError";
 
 function invoice({ invoice, goBack }) {
   const payInvoice = async () => {
-    await requestProvider();
-    window.webln.sendPayment(invoice.paymentRequest);
+    try {
+      await requestProvider();
+      window.webln.sendPayment(invoice.paymentRequest);
+    } catch (error) {
+      handleError(error.message);
+    }
   };
   return (
     <div>
       <img onClick={goBack} src={backIcon} width={"20px"}></img>
-      <div  onClick={payInvoice} className="invoice">
+      <div onClick={payInvoice} className="invoice">
         <div>
           <QRCode
             size={100}
             style={{ height: "auto", maxWidth: "150px", width: "150px" }}
             value={invoice.paymentRequest}
             viewBox={`0 0 256 256`}
-           
           />
         </div>
       </div>
