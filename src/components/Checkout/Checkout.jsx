@@ -36,7 +36,6 @@ function Checkout({ products, closeCheckout, removeItem, removeAllProducts }) {
       const response = await ajax.generateInvoice(buyer, productList(products));
       const weblnStatus = await checkWebln()
       if (weblnStatus) {
-        alert("why are you running")
         setLoading(false);
         await window.webln.sendPayment(response.invoice.paymentRequest);
       } else {
