@@ -17,13 +17,13 @@
     "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.15.0",
     "socket.io-client": "^4.7.2",
-    "webln": "^0.3.2",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "@webbtc/webln-types": "^2.0.1",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
