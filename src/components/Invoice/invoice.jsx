@@ -2,18 +2,18 @@ import React from "react";
 import QRCode from "react-qr-code";
 import "./invoice.css";
 import InvoiceInput from "../Elements/Forms/InvoiceInput";
-import { requestProvider } from "webln";
 import PaymentLoading from "./PaymentLoading";
 import backIcon from "../../assets/icons/back-icon.svg";
 import handleError from "../../utils/handleError";
+import { checkWebln } from "../../utils/checkWebln";
 
 function invoice({ invoice, goBack }) {
   const payInvoice = async () => {
-    try {
-      await requestProvider();
-      window.webln.sendPayment(invoice.paymentRequest);
-    } catch (error) {
-      handleError(error.message);
+    const weblnStatus = await checkWebln();
+    if (weblnStatus) {
+      await window.webln.sendPayment(invoice.paymentRequest);
+    } else {
+      handleError("WebLN is not enabled");
     }
   };
   return (

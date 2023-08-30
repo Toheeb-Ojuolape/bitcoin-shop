@@ -11,8 +11,8 @@ import DetailsForm from "../Elements/Forms/DetailsForm";
 import SuccessComponent from "./SuccessComponent";
 import io from "socket.io-client";
 import { productList } from "../../utils/productList";
-import { requestProvider } from "webln";
 import handleError from "../../utils/handleError";
+import { checkWebln } from "../../utils/checkWebln";
 
 function Checkout({ products, closeCheckout, removeItem, removeAllProducts }) {
   const [loading, setLoading] = useState(false);
@@ -34,17 +34,16 @@ function Checkout({ products, closeCheckout, removeItem, removeAllProducts }) {
     try {
       setLoading(true);
       const response = await ajax.generateInvoice(buyer, productList(products));
-      requestProvider()
-        .then(async (webln) => {
-          console.log(webln)
-          setLoading(false);
-          await webln.sendPayment(response.invoice.paymentRequest);
-        })
-        .catch(() => {
-          setLoading(false);
-          setInvoice(response.invoice);
-          setPayment(true);
-        });
+      const weblnStatus = await checkWebln()
+      if (weblnStatus) {
+        alert("why are you running")
+        setLoading(false);
+        await window.webln.sendPayment(response.invoice.paymentRequest);
+      } else {
+        setLoading(false);
+        setInvoice(response.invoice);
+        setPayment(true);
+      }
     } catch (error) {
       handleError(error.message);
       setLoading(false);
