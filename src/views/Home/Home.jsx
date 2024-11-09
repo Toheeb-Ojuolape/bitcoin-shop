@@ -9,10 +9,13 @@ import Cart from "../../components/Elements/Cart/Cart";
 import handleError from "../../utils/handleError";
 
 function Home() {
+  console.log('<Home /> run')
   const [products, setProducts] = useState([]);
   const [checkout, setShowCheckout] = useState(false);
+  const _TODO_got_products = useProductStore.getState().products;
+  console.log("products exist!", _TODO_got_products)
   const [productsincart, setProductsInCart] = useState(
-    useProductStore.getState().products
+    _TODO_got_products
   );
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -22,6 +25,8 @@ function Home() {
         setProducts(fetchProducts.data);
         setLoading(false);
       } catch (error) {
+        console.log('error', error);
+        window.TODOexc = error;
         handleError(error.response.data.error);
         setLoading(false);
       }
@@ -53,6 +58,7 @@ function Home() {
     setShowCheckout(!checkout);
     window.scroll(0, 0);
   };
+
   return (
     <div className="relative">
       <Navbar products={productsincart} showCheckout={showCheckout} />
